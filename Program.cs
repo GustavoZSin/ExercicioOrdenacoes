@@ -1,10 +1,12 @@
 ﻿using TesteOrdenacao;
 
-//Geração de listas
+//Gera as listas originais e as exibe
 Gerador gerador = new();
-ListaDuplamenteEncadeada listaOrdenada = gerador.GerarListaOrdenada();
-ListaDuplamenteEncadeada listaDesordenada = gerador.GerarListaDesordenada();
+Console.WriteLine("Gerando Listas Originais...");
 ListaDuplamenteEncadeada listaInversamenteOrdenada = gerador.GerarListaInversamenteOrdenada();
+ListaDuplamenteEncadeada listaDesordenada = gerador.GerarListaDesordenada();
+ListaDuplamenteEncadeada listaOrdenada = gerador.GerarListaOrdenada();
+Console.WriteLine("------------------------");
 
 #region Bubble Sort
 ListaDuplamenteEncadeada lBubbleSortOrdenada1 = Ordenador.BubbleSort(listaOrdenada);

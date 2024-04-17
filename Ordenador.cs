@@ -8,8 +8,8 @@ namespace TesteOrdenacao
 {
     public class Ordenador
     {
-        public static int Trocas;
-        public static int Comparacoes;
+        public static int Trocas { get; private set; }
+        public static int Comparacoes { get; private set; }
 
         internal static ListaDuplamenteEncadeada BubbleSort(ListaDuplamenteEncadeada listaOrdenada)
         {
@@ -77,17 +77,32 @@ namespace TesteOrdenacao
         }
         public static ListaDuplamenteEncadeada TreeSort(ListaDuplamenteEncadeada listaOrdenada)
         {
-            throw new NotImplementedException();
+            Arvore arvore = new Arvore();
+            Nodo aux = listaOrdenada.Raiz;
+
+            while(aux != null)
+            {
+                arvore.Inserir(aux.Valor);
+                aux = aux.Proximo;
+            }
+
+            listaOrdenada = arvore.TravessiaEmOrdem();
+
+            Trocas = arvore.Insercoes;
+            Comparacoes = arvore.Comparacoes;
+
+            return listaOrdenada;
         }
-        public static void Exibir(string mensagem, ListaDuplamenteEncadeada lista, string titulo = null)
+        public static void Exibir(string mensagem, ListaDuplamenteEncadeada listaOrdenada, string titulo = null)
         {
             if (titulo != null)
                 Console.WriteLine(titulo);
 
-            Console.WriteLine(mensagem);
-            lista.Exibir();
+            Console.WriteLine(" - " + mensagem);
+            Console.Write("Resultado:        ");
+            listaOrdenada.Exibir();
             Console.WriteLine($"Inserções/Trocas: {Trocas}");
-            Console.WriteLine($"Comparações: {Comparacoes}");
+            Console.WriteLine($"Comparações:      {Comparacoes}");
             Console.WriteLine("---------------------------\n");
         }
     }

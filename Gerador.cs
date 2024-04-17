@@ -22,6 +22,9 @@ namespace TesteOrdenacao
             listaOrdenada.Inserir(8);
             listaOrdenada.Inserir(9);
 
+            Console.Write("Lista Ordenada Original:              ");
+            listaOrdenada.Exibir();
+
             return listaOrdenada;
         }
         public ListaDuplamenteEncadeada GerarListaDesordenada()
@@ -38,6 +41,9 @@ namespace TesteOrdenacao
             listaDesordenada.Inserir(7);
             listaDesordenada.Inserir(2);
 
+            Console.Write("Lista Desordenada Original:           ");
+            listaDesordenada.Exibir();
+
             return listaDesordenada;
         }
         public ListaDuplamenteEncadeada GerarListaInversamenteOrdenada()
@@ -53,6 +59,9 @@ namespace TesteOrdenacao
             listaInversamenteOrdenada.Inserir(2);
             listaInversamenteOrdenada.Inserir(1);
             listaInversamenteOrdenada.Inserir(0);
+
+            Console.Write("Lista Inversamente Ordenada Original: ");
+            listaInversamenteOrdenada.Exibir();
 
             return listaInversamenteOrdenada;
         }

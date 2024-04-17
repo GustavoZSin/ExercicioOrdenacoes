@@ -10,7 +10,7 @@ namespace TesteOrdenacao
 {
     public class ListaDuplamenteEncadeada
     {
-        public Nodo Raiz;
+        public Nodo Raiz { get; private set; }
         public void Inserir(int valor)
         {
             Nodo novoNodo = new(valor);
@@ -345,7 +345,7 @@ namespace TesteOrdenacao
                     lResultante1.Inserir(aux.Valor);
                 else
                 {
-                    
+
                     lResultante2.Inserir(aux.Valor);
                 }
 
