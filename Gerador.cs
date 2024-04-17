@@ -8,35 +8,53 @@ namespace TesteOrdenacao
 {
     public class Gerador
     {
-        //Ao invés de retornar um vetor, deve retornar lista duplamente encadeada
-        public int[] ObterVetorOrdenado(int tamanhoVetor)
+        public ListaDuplamenteEncadeada GerarListaOrdenada()
         {
-            int[] vetor = new int[tamanhoVetor];
-            for (int i = 0; i < tamanhoVetor; i++)
-            {
-                vetor[i] = i;
-            }
+            ListaDuplamenteEncadeada listaOrdenada = new();
+            listaOrdenada.Inserir(0);
+            listaOrdenada.Inserir(1);
+            listaOrdenada.Inserir(2);
+            listaOrdenada.Inserir(3);
+            listaOrdenada.Inserir(4);
+            listaOrdenada.Inserir(5);
+            listaOrdenada.Inserir(6);
+            listaOrdenada.Inserir(7);
+            listaOrdenada.Inserir(8);
+            listaOrdenada.Inserir(9);
 
-            return vetor;
+            return listaOrdenada;
         }
-        //Ao invés de retornar um vetor, deve retornar lista duplamente encadeada
-        public int[] ObterVetorInversamenteOrdenado(int tamanhoVetor)
+        public ListaDuplamenteEncadeada GerarListaDesordenada()
         {
-            int[] vetor = new int[tamanhoVetor];
+            ListaDuplamenteEncadeada listaDesordenada = new();
+            listaDesordenada.Inserir(9);
+            listaDesordenada.Inserir(1);
+            listaDesordenada.Inserir(5);
+            listaDesordenada.Inserir(3);
+            listaDesordenada.Inserir(0);
+            listaDesordenada.Inserir(4);
+            listaDesordenada.Inserir(8);
+            listaDesordenada.Inserir(6);
+            listaDesordenada.Inserir(7);
+            listaDesordenada.Inserir(2);
 
-            int j = tamanhoVetor;
-            for (int i = 0; i > 0; i++)
-            {
-                vetor[i] = j;
-                j--;
-            }
-
-            return vetor;
+            return listaDesordenada;
         }
-        //Ao invés de retornar um vetor, deve retornar lista duplamente encadeada
-        public int[] ObterVetorAleatorio()
+        public ListaDuplamenteEncadeada GerarListaInversamenteOrdenada()
         {
-            return new int[] { 73, 57, 49, 99, 133, 20, 1 };
+            ListaDuplamenteEncadeada listaInversamenteOrdenada = new();
+            listaInversamenteOrdenada.Inserir(9);
+            listaInversamenteOrdenada.Inserir(8);
+            listaInversamenteOrdenada.Inserir(7);
+            listaInversamenteOrdenada.Inserir(6);
+            listaInversamenteOrdenada.Inserir(5);
+            listaInversamenteOrdenada.Inserir(4);
+            listaInversamenteOrdenada.Inserir(3);
+            listaInversamenteOrdenada.Inserir(2);
+            listaInversamenteOrdenada.Inserir(1);
+            listaInversamenteOrdenada.Inserir(0);
+
+            return listaInversamenteOrdenada;
         }
     }
 }
