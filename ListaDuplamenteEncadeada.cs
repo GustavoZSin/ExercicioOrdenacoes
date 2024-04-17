@@ -10,18 +10,18 @@ namespace TesteOrdenacao
 {
     public class ListaDuplamenteEncadeada
     {
-        private Nodo _raiz;
+        public Nodo Raiz;
         public void Inserir(int valor)
         {
             Nodo novoNodo = new(valor);
 
-            if (_raiz == null)
+            if (Raiz == null)
             {
-                _raiz = novoNodo;
+                Raiz = novoNodo;
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             while (aux.Proximo != null)
                 aux = aux.Proximo;
@@ -31,13 +31,13 @@ namespace TesteOrdenacao
         }
         public void Remover(int valor)
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             while (aux.Proximo != null)
             {
@@ -55,13 +55,13 @@ namespace TesteOrdenacao
         }
         public void Exibir()
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             while (aux != null)
             {
                 if (aux.Proximo != null)
@@ -75,11 +75,11 @@ namespace TesteOrdenacao
         }
         public int ContarElementos()
         {
-            if (_raiz == null) return 0;
+            if (Raiz == null) return 0;
 
             int tamanho = 1;
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             while (aux.Proximo != null)
             {
                 tamanho++;
@@ -90,13 +90,13 @@ namespace TesteOrdenacao
         }
         public bool Buscar(int valor)
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return false;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             while (aux.Proximo != null)
             {
@@ -109,13 +109,13 @@ namespace TesteOrdenacao
         }
         public int BuscaValorNoIndice(int posicao)
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return 0;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             int indice = 0;
 
             while (aux != null && indice < posicao)
@@ -140,7 +140,7 @@ namespace TesteOrdenacao
                 return;
             }
 
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 // Se a lista estiver vazia e a posição for 0, insere como raiz
                 if (posicao == 0)
@@ -156,7 +156,7 @@ namespace TesteOrdenacao
             }
 
             Nodo novoNodo = new Nodo(valor);
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             int indice = 0;
 
             while (aux != null && indice < posicao - 1)
@@ -191,22 +191,22 @@ namespace TesteOrdenacao
         {
             Nodo novo = new(valor);
 
-            if (_raiz == null)
-                _raiz = novo;
+            if (Raiz == null)
+                Raiz = novo;
 
-            novo.Proximo = _raiz;
-            _raiz.Anterior = novo;
-            _raiz = novo;
+            novo.Proximo = Raiz;
+            Raiz.Anterior = novo;
+            Raiz = novo;
         }
         public void Inverter()
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             Nodo anterior = null;
             Nodo proximo = null;
 
@@ -219,35 +219,35 @@ namespace TesteOrdenacao
                 aux = proximo;
             }
 
-            _raiz = anterior;
+            Raiz = anterior;
         }
         public void Concatenar(ListaDuplamenteEncadeada lista2)
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
-                _raiz = lista2._raiz;
+                Raiz = lista2.Raiz;
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             while (aux.Proximo != null)
             {
                 aux = aux.Proximo;
             }
 
-            aux.Proximo = lista2._raiz;
-            lista2._raiz.Anterior = aux;
+            aux.Proximo = lista2.Raiz;
+            lista2.Raiz.Anterior = aux;
         }
         public void RemoverDuplicatas()
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             while (aux != null)
             {
@@ -268,17 +268,17 @@ namespace TesteOrdenacao
         }
         public ListaDuplamenteEncadeada Intersecao(ListaDuplamenteEncadeada lista82)
         {
-            if (_raiz == null || lista82._raiz == null)
+            if (Raiz == null || lista82.Raiz == null)
             {
                 Console.WriteLine("Uma das listas está vazia");
                 return null;
             }
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
             ListaDuplamenteEncadeada intersecao = new();
             while (aux != null)
             {
-                Nodo auxLista2 = lista82._raiz;
+                Nodo auxLista2 = lista82.Raiz;
                 while (auxLista2 != null)
                 {
                     if (aux.Valor == auxLista2.Valor)
@@ -296,7 +296,7 @@ namespace TesteOrdenacao
         }
         public void Ordenar()
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return;
@@ -306,7 +306,7 @@ namespace TesteOrdenacao
 
             while (houveAlteracao == true)
             {
-                Nodo aux = _raiz;
+                Nodo aux = Raiz;
                 houveAlteracao = false;
                 while (aux.Proximo != null)
                 {
@@ -324,7 +324,7 @@ namespace TesteOrdenacao
         }
         public ListaDuplamenteEncadeada[] Dividir()
         {
-            if (_raiz == null)
+            if (Raiz == null)
             {
                 Console.WriteLine("Lista vazia");
                 return null;
@@ -337,7 +337,7 @@ namespace TesteOrdenacao
             int totalElementos = ContarElementos();
             int tamanhoPrimeiroVetor = totalElementos / 2;
 
-            Nodo aux = _raiz;
+            Nodo aux = Raiz;
 
             for (int i = 0; i < totalElementos; i++)
             {
