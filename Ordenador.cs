@@ -80,7 +80,7 @@ namespace TesteOrdenacao
             Arvore arvore = new Arvore();
             Nodo aux = listaOrdenada.Raiz;
 
-            while(aux != null)
+            while (aux != null)
             {
                 arvore.Inserir(aux.Valor);
                 aux = aux.Proximo;
