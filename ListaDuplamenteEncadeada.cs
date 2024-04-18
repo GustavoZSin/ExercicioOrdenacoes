@@ -29,30 +29,6 @@ namespace TesteOrdenacao
             aux.Proximo = novoNodo;
             novoNodo.Anterior = aux;
         }
-        public void Remover(int valor)
-        {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return;
-            }
-
-            Nodo aux = Raiz;
-
-            while (aux.Proximo != null)
-            {
-                if (aux.Valor == valor)
-                {
-                    aux.Anterior.Proximo = aux.Proximo;
-                    aux.Proximo.Anterior = aux.Anterior;
-                    return;
-                }
-
-                aux = aux.Proximo;
-            }
-
-            Console.WriteLine("Valor não encontrado na lista");
-        }
         public void Exibir()
         {
             if (Raiz == null)
@@ -101,125 +77,16 @@ namespace TesteOrdenacao
             }
             return false;
         }
-        public int BuscaValorNoIndice(int posicao)
-        {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return 0;
-            }
-
-            Nodo aux = Raiz;
-            int indice = 0;
-
-            while (aux != null && indice < posicao)
-            {
-                aux = aux.Proximo;
-                indice++;
-            }
-
-            if (aux == null)
-            {
-                Console.WriteLine("Posição maior que a lista");
-                return 0;
-            }
-
-            return aux.Valor;
-        }
-        public void InserirNoIndice(int posicao, int valor)
-        {
-            if (posicao < 0)
-            {
-                Console.WriteLine("A posição deve ser um valor positivo ou zero.");
-                return;
-            }
-
-            if (Raiz == null)
-            {
-                // Se a lista estiver vazia e a posição for 0, insere como raiz
-                if (posicao == 0)
-                {
-                    this.Inserir(valor);
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Posição maior que a lista.");
-                    return;
-                }
-            }
-
-            Nodo novoNodo = new Nodo(valor);
-            Nodo aux = Raiz;
-            int indice = 0;
-
-            while (aux != null && indice < posicao - 1)
-            {
-                aux = aux.Proximo;
-                indice++;
-            }
-
-            if (aux == null)
-            {
-                Console.WriteLine("Posição maior que a lista.");
-                return;
-            }
-
-            // Inserção no início da lista
-            if (posicao == 0)
-                this.InserirNoInicio(novoNodo.Valor);
-            else
-            {
-                novoNodo.Proximo = aux.Proximo;
-                novoNodo.Anterior = aux;
-                aux.Proximo = novoNodo;
-
-                // Atualiza o anterior do próximo nó, se existir
-                if (novoNodo.Proximo != null)
-                {
-                    novoNodo.Proximo.Anterior = novoNodo;
-                }
-            }
-        }
-        public void InserirNoInicio(int valor)
-        {
-            Nodo novo = new(valor);
-
-            if (Raiz == null)
-                Raiz = novo;
-
-            novo.Proximo = Raiz;
-            Raiz.Anterior = novo;
-            Raiz = novo;
-        }
-        public void Inverter()
-        {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return;
-            }
-
-            Nodo aux = Raiz;
-            Nodo anterior = null;
-            Nodo proximo = null;
-
-            while (aux != null)
-            {
-                proximo = aux.Proximo;
-                aux.Proximo = anterior;
-                aux.Anterior = proximo;
-                anterior = aux;
-                aux = proximo;
-            }
-
-            Raiz = anterior;
-        }
         public void Concatenar(ListaDuplamenteEncadeada lista2)
         {
             if (Raiz == null)
             {
                 Raiz = lista2.Raiz;
+                return;
+            }
+
+            if(lista2.Raiz == null)
+            {
                 return;
             }
 
@@ -232,89 +99,6 @@ namespace TesteOrdenacao
 
             aux.Proximo = lista2.Raiz;
             lista2.Raiz.Anterior = aux;
-        }
-        public void RemoverDuplicatas()
-        {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return;
-            }
-
-            Nodo aux = Raiz;
-
-            while (aux != null)
-            {
-                Nodo auxSecundario = aux.Proximo;
-
-                while (auxSecundario != null)
-                {
-                    if (aux.Valor == auxSecundario.Valor)
-                    {
-                        auxSecundario.Proximo.Anterior = auxSecundario.Anterior;
-                        auxSecundario.Anterior.Proximo = auxSecundario.Proximo;
-                    }
-                    auxSecundario = auxSecundario.Proximo;
-                }
-
-                aux = aux.Proximo;
-            }
-        }
-        public ListaDuplamenteEncadeada Intersecao(ListaDuplamenteEncadeada lista82)
-        {
-            if (Raiz == null || lista82.Raiz == null)
-            {
-                Console.WriteLine("Uma das listas está vazia");
-                return null;
-            }
-
-            Nodo aux = Raiz;
-            ListaDuplamenteEncadeada intersecao = new();
-            while (aux != null)
-            {
-                Nodo auxLista2 = lista82.Raiz;
-                while (auxLista2 != null)
-                {
-                    if (aux.Valor == auxLista2.Valor)
-                    {
-                        intersecao.Inserir(aux.Valor);
-                    }
-
-                    auxLista2 = auxLista2.Proximo;
-                }
-
-                aux = aux.Proximo;
-            }
-
-            return intersecao;
-        }
-        public void Ordenar()
-        {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return;
-            }
-
-            bool houveAlteracao = true;
-
-            while (houveAlteracao == true)
-            {
-                Nodo aux = Raiz;
-                houveAlteracao = false;
-                while (aux.Proximo != null)
-                {
-                    if (aux.Valor > aux.Proximo.Valor)
-                    {
-                        int temp = aux.Valor;
-                        aux.Valor = aux.Proximo.Valor;
-                        aux.Proximo.Valor = temp;
-                        houveAlteracao = true;
-                    }
-
-                    aux = aux.Proximo;
-                }
-            }
         }
         public ListaDuplamenteEncadeada[] Dividir()
         {
@@ -347,6 +131,55 @@ namespace TesteOrdenacao
             listasResultantes[1] = lResultante2;
 
             return listasResultantes;
+        }
+        public Nodo EncontrarElementoDoMeio(ListaDuplamenteEncadeada lista)
+        {
+            Nodo rapido = lista.Raiz;
+            Nodo lento = lista.Raiz;
+
+            while (rapido != null && rapido.Proximo != null)
+            {
+                rapido = rapido.Proximo.Proximo;
+                lento = lento.Proximo;
+            }
+
+            return lento;
+        }
+        public void InserirNoFim(int valor)
+        {
+            Nodo novoNodo = new Nodo(valor);
+
+            if (Raiz == null)
+            {
+                Raiz = novoNodo;
+                return;
+            }
+
+            Nodo atual = Raiz;
+            while (atual.Proximo != null)
+            {
+                atual = atual.Proximo;
+            }
+
+            atual.Proximo = novoNodo;
+            novoNodo.Anterior = atual;
+        }
+        public ListaDuplamenteEncadeada Copiar()
+        {
+            ListaDuplamenteEncadeada novaLista = new ListaDuplamenteEncadeada();
+
+            if (this.Raiz == null)
+                return novaLista;
+
+            Nodo atual = this.Raiz;
+
+            while (atual != null)
+            {
+                novaLista.InserirNoFim(atual.Valor);
+                atual = atual.Proximo;
+            }
+
+            return novaLista;
         }
     }
 }

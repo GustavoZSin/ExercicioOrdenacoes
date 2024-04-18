@@ -14,6 +14,9 @@ namespace TesteOrdenacao
         #region Bubble Sort
         public static ListaDuplamenteEncadeada BubbleSort(ListaDuplamenteEncadeada listaOrdenada)
         {
+            Trocas = 0;
+            Comparacoes = 0;
+
             if (listaOrdenada == null || listaOrdenada.Raiz == null)
                 return listaOrdenada;
 
@@ -78,14 +81,46 @@ namespace TesteOrdenacao
         #endregion
 
         #region Insertion Sort
-        public static ListaDuplamenteEncadeada InsertionSort(ListaDuplamenteEncadeada listaOrdenada)
+        public static ListaDuplamenteEncadeada InsertionSort(ListaDuplamenteEncadeada lista)
         {
-            throw new NotImplementedException();
+            Trocas = 0;
+            Comparacoes = 0;
+
+            if (lista.Raiz == null || lista.Raiz.Proximo == null)
+                return lista;
+
+            Nodo atual = lista.Raiz.Proximo;
+
+            while (atual != null)
+            {
+                Nodo anterior = atual.Anterior;
+                Nodo atualComparacao = anterior;
+
+                Comparacoes++;
+                while (atualComparacao != null && atual.Valor < atualComparacao.Valor)
+                {
+                    TrocaNodos(atual, atualComparacao);
+
+                    atual = atual.Anterior;
+                    atualComparacao = atualComparacao.Anterior;
+                }
+
+                atual = atual.Proximo;
+            }
+
+            return lista;
         }
         #endregion
 
         #region Merge Sort
         public static ListaDuplamenteEncadeada MergeSort(ListaDuplamenteEncadeada lista)
+        {
+            Trocas = 0;
+            Comparacoes = 0;
+
+            return MergeSorteRecursivo(lista);
+        }
+        public static ListaDuplamenteEncadeada MergeSorteRecursivo(ListaDuplamenteEncadeada lista)
         {
             if (lista == null || lista.Raiz == null || lista.Raiz.Proximo == null)
                 return lista;
@@ -94,8 +129,8 @@ namespace TesteOrdenacao
             ListaDuplamenteEncadeada listaEsquerda = listasDivididas[0];
             ListaDuplamenteEncadeada listaDireita = listasDivididas[1];
 
-            listaEsquerda = MergeSort(listaEsquerda);
-            listaDireita = MergeSort(listaDireita);
+            listaEsquerda = MergeSorteRecursivo(listaEsquerda);
+            listaDireita = MergeSorteRecursivo(listaDireita);
 
             return Merge(listaEsquerda, listaDireita);
         }
@@ -143,13 +178,64 @@ namespace TesteOrdenacao
         #region Quick Sort
         public static ListaDuplamenteEncadeada QuickSort(ListaDuplamenteEncadeada listaOrdenada)
         {
-            throw new NotImplementedException();
+            Trocas = 0;
+            Comparacoes = 0;
+
+            return Quick(listaOrdenada);
         }
+        public static ListaDuplamenteEncadeada Quick(ListaDuplamenteEncadeada listaOrdenada)
+        {
+
+            if (listaOrdenada.Raiz == null || listaOrdenada.Raiz.Proximo == null)
+                return listaOrdenada;
+
+            Nodo pivo = listaOrdenada.EncontrarElementoDoMeio(listaOrdenada);
+
+            ListaDuplamenteEncadeada menores = new ListaDuplamenteEncadeada();
+            ListaDuplamenteEncadeada maiores = new ListaDuplamenteEncadeada();
+
+            for (Nodo atual = listaOrdenada.Raiz; atual != null; atual = atual.Proximo)
+            {
+                Comparacoes++;
+
+                if (atual == pivo)
+                    continue;
+
+                if (atual.Valor < pivo.Valor)
+                {
+                    menores.Inserir(atual.Valor);
+                    Trocas++;
+                }
+                else
+                {
+                    maiores.Inserir(atual.Valor);
+                    Trocas++;
+                }
+            }
+
+            menores = Quick(menores);
+            maiores = Quick(maiores);
+
+            menores.InserirNoFim(pivo.Valor);
+            Trocas++;
+
+            if (maiores != null)
+            {
+                menores.Concatenar(maiores);
+                Trocas++;
+            }
+
+            return menores;
+        }
+
         #endregion
 
         #region TreeSort
         public static ListaDuplamenteEncadeada TreeSort(ListaDuplamenteEncadeada listaOrdenada)
         {
+            Trocas = 0;
+            Comparacoes = 0;
+
             Arvore arvore = new Arvore();
             Nodo aux = listaOrdenada.Raiz;
 
