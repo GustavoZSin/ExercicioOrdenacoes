@@ -90,15 +90,9 @@ namespace TesteOrdenacao
         }
         public bool Buscar(int valor)
         {
-            if (Raiz == null)
-            {
-                Console.WriteLine("Lista vazia");
-                return false;
-            }
-
             Nodo aux = Raiz;
 
-            while (aux.Proximo != null)
+            while (aux != null)
             {
                 if (aux.Valor == valor)
                     return true;
@@ -344,10 +338,7 @@ namespace TesteOrdenacao
                 if (i < tamanhoPrimeiroVetor)
                     lResultante1.Inserir(aux.Valor);
                 else
-                {
-
                     lResultante2.Inserir(aux.Valor);
-                }
 
                 aux = aux.Proximo;
             }

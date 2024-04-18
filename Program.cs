@@ -1,7 +1,7 @@
 ﻿using TesteOrdenacao;
 
 //Gera as listas originais e as exibe
-Gerador gerador = new();
+Gerador gerador = new(10);
 Console.WriteLine("Gerando Listas Originais...");
 ListaDuplamenteEncadeada listaInversamenteOrdenada = gerador.GerarListaInversamenteOrdenada();
 ListaDuplamenteEncadeada listaDesordenada = gerador.GerarListaDesordenada();
@@ -30,7 +30,7 @@ ListaDuplamenteEncadeada lSelectionSortOrdenada3 = Ordenador.SelectionSort(lista
 Ordenador.Exibir("Lista Inversamente Ordenada:", lSelectionSortOrdenada3);
 #endregion
 
-#region Insertion Sort
+/*#region Insertion Sort
 ListaDuplamenteEncadeada lInsertionSortOrdenada1 = Ordenador.InsertionSort(listaOrdenada);
 Ordenador.Exibir("Lista Ordenada:", lInsertionSortOrdenada1, "\nInsertion Sort:\n");
 
@@ -39,7 +39,7 @@ Ordenador.Exibir("Lista Desordenada:", lInsertionSortOrdenada2);
 
 ListaDuplamenteEncadeada lInsertionSortOrdenada3 = Ordenador.InsertionSort(listaInversamenteOrdenada);
 Ordenador.Exibir("Lista Inversamente Ordenada:", lInsertionSortOrdenada3);
-#endregion
+#endregion*/
 
 #region Merge Sort
 ListaDuplamenteEncadeada lMergeSortOrdenada1 = Ordenador.MergeSort(listaOrdenada);
@@ -52,7 +52,7 @@ ListaDuplamenteEncadeada lMergeSortOrdenada3 = Ordenador.MergeSort(listaInversam
 Ordenador.Exibir("Lista Inversamente Ordenada:", lMergeSortOrdenada3);
 #endregion
 
-#region Quick Sort
+/*#region Quick Sort
 ListaDuplamenteEncadeada lQuickSortOrdenada1 = Ordenador.QuickSort(listaOrdenada);
 Ordenador.Exibir("Lista Ordenada:", lQuickSortOrdenada1, "\nQuick Sort:\n");
 
@@ -61,7 +61,7 @@ Ordenador.Exibir("Lista Desordenada:", lQuickSortOrdenada2);
 
 ListaDuplamenteEncadeada lQuickSortOrdenada3 = Ordenador.QuickSort(listaInversamenteOrdenada);
 Ordenador.Exibir("Lista Inversamente Ordenada:", lQuickSortOrdenada3);
-#endregion
+#endregion*/
 
 #region Tree Sort
 ListaDuplamenteEncadeada lTreeSortOrdenada1 = Ordenador.TreeSort(listaOrdenada);
